@@ -1,0 +1,28 @@
+{
+  "name": "@npmcli/npm-birthday",
+  "version": "1.0.0",
+  "files": [
+    "index.js",
+    "bin.js"
+  ],
+  "main": "index.js",
+  "bin": "bin.js",
+  "description": "Implementation of the \"npm birthday\" command",
+  "repository": "https://github.com/npm/npm-birthday",
+  "author": "Isaac Z. Schlueter <i@izs.me> (https://izs.me)",
+  "license": "ISC",
+  "scripts": {
+    "test": "tap",
+    "snap": "tap",
+    "preversion": "npm test",
+    "postversion": "npm publish",
+    "prepublishOnly": "git push origin --follow-tags"
+  },
+  "tap": {
+    "check-coverage": true
+  },
+  "devDependencies": {
+    "require-inject": "^1.4.4",
+    "tap": "^14.11.0"
+  }
+}
