@@ -1,5 +1,4 @@
 const t = require('tap')
-const requireInject = require('require-inject')
 
 t.test('birthday (nope)', (t) => {
   t.plan(1)
@@ -12,7 +11,7 @@ t.test('birthday (nope)', (t) => {
   })
 
   class FakeDate extends Date {
-    getUTCMonth() {
+    getUTCMonth () {
       return 7
     }
   }
@@ -22,7 +21,7 @@ t.test('birthday (nope)', (t) => {
 
   const birthday = t.mock('../', {})
   birthday((err) => {
-    t.match(err, 'try again', 'not telling you the secret that easily are we?')
+    t.match(err.message, 'try again', 'not telling you the secret that easily are we?')
   })
 })
 
@@ -37,12 +36,12 @@ t.test('birthday (nope again)', (t) => {
   })
 
   class FakeDate extends Date {
-    getFullYear() {
+    getFullYear () {
       const now = new RealDate()
       return now.getFullYear() + 1
     }
 
-    getUTCMonth() {
+    getUTCMonth () {
       return 9
     }
   }
@@ -52,7 +51,7 @@ t.test('birthday (nope again)', (t) => {
 
   const birthday = t.mock('../', {})
   birthday((err) => {
-    t.match(err, 'try again', 'not telling you the secret that easily are we?')
+    t.match(err.message, 'try again', 'not telling you the secret that easily are we?')
   })
 })
 
@@ -67,12 +66,12 @@ t.test('birthday (strike 3)', (t) => {
   })
 
   class FakeDate extends Date {
-    getFullYear() {
+    getFullYear () {
       const now = new RealDate()
       return now.getFullYear() - 1
     }
 
-    getUTCMonth() {
+    getUTCMonth () {
       return 11
     }
   }
@@ -82,7 +81,7 @@ t.test('birthday (strike 3)', (t) => {
 
   const birthday = t.mock('../', {})
   birthday((err) => {
-    t.match(err, 'try again', 'not telling you the secret that easily are we?')
+    t.match(err.message, 'try again', 'not telling you the secret that easily are we?')
   })
 })
 
@@ -97,11 +96,11 @@ t.test('birthday (yup)', (t) => {
   })
 
   class FakeDate extends Date {
-    getUTCMonth() {
+    getUTCMonth () {
       return 8
     }
 
-    getUTCDate() {
+    getUTCDate () {
       return 29
     }
   }
